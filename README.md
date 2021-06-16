@@ -169,11 +169,35 @@ err:
 
 プログラムでは，ヒープ領域に変数`num`を定義し，子スレッド内でその値に10を足した後その結果が親スレッド内でも反映されているかどうかを確認している．
 ```c
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
 
+void child(void *arg){
+	printf("child called\n");
+	int *num = (int*)arg;
+	*num += 10;
+	return;
+}
+
+int main(int argc, char *argv[]){
+	int *num = malloc(sizeof(int));
+	int ret;
+	*num = 100;
+	printf("before num : %d\n",*num);
+	ret = create_thread(child,(void *)num);
+	join(ret);
+	printf("after num : %d\n",*num);
+	exit(0);
+}
 ```
 
 実行結果は以下のようになった．numの値が元々の100から10を加算した110に変更されているのが確認できた．この結果からも，親スレッドと子スレッドの間でヒープ領域が確保できているのが確認できる．
 ```
+$ test
+before num : 100
+child called
+after num : 110
 ```
 
 
