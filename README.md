@@ -32,6 +32,7 @@ clone()
 ```
 
 
+
 **・thread_exit()**
 
 スレッド用のexit関数．通常の`exit()`を使用してしまうと，アドレス空間を共有している他のプロセスの領域も解放してしまう．
@@ -46,6 +47,7 @@ int thread_exit(void){
   return 0;
 }
 ```
+
 
 
 **・join()**
@@ -107,6 +109,7 @@ err:
   return -1;
 }
 ```
+
 
 **・uvmcopy_excludestack()**
 
