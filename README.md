@@ -20,13 +20,13 @@ xv6上でthreadを実装する．
 int
 clone()
 {
-  //
+  //省略(fork()と同一）
   if(uvmcopy_onlystack(p->pagetable, np->pagetable, p->trapframe->sp, p->sz) < 0){
     freeproc(np);
     release(&np->lock);
     return -1;
   }
-  //
+  //省略（fork()と同一）
   return pid;
 }
 ```
