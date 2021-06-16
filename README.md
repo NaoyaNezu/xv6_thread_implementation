@@ -61,7 +61,6 @@ int join(int pid){
 ```
 
 ### vm.c
----
 
 **・uvmcopy_onlystack()**
 
