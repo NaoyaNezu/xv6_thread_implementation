@@ -10,8 +10,7 @@ xv6上でthreadを実装する．
 
 ## threadの実装〜Kernel Side〜
 
-### proc.c
----
+### **proc.c**
 
 **・clone()**
 
@@ -61,7 +60,7 @@ int join(int pid){
 }
 ```
 
-### vm.c
+### **vm.c**
 ---
 
 **・uvmcopy_onlystack()**
