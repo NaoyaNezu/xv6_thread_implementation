@@ -157,6 +157,25 @@ err:
 ### thread.c
 ユーザ側からは，`create_thread()`関数を使って，スレッドの生成を依頼する．引数には，スレッドに実行してほしい関数のアドレスとその関数の引数を渡す．
 ```c
+#include "kernel/types.h"
+#include "kernel/stat.h"
+#include "user/user.h"
+
+#define PGSIZE 4096
+
+int create_thread(void(*fn)(void *),void *arg){
+    int ret = clone();
+    if(ret == 0){
+        fn(arg);
+        t_exit();
+
+        //do't reach here
+        exit(0);
+    }
+    else{
+        return ret;
+    }
+}
 ```
 
 ### systemcalls
